@@ -1,1 +1,4 @@
 tabulate
+IPython.display
+matplotlib
+numpy
