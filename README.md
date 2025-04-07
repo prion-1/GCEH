@@ -9,3 +9,6 @@ frequencies. In addition, a graphical representation of the analysis is plotted 
 an amino acid when possible.
 
 The input accepts [a, g, c, t, u] in upper/lower case. Stop codons are removed and the input sequence is truncated at the first occuring stop.
+
+[!TIP]
+Use: either start binder version above or launch __gceh.ipynb__ in your own notebook.
