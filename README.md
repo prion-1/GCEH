@@ -1,4 +1,4 @@
-# Genetic Code Exploration Helper - GCEH
+# Genetic Code Exploration Helper
 ## Visual analysis of the codon distribution in a DNA/RNA sequence
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/prion-1/GCEH/main?urlpath=%2Fdoc%2Ftree%2Fgceh.ipynb)
