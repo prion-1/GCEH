@@ -20,3 +20,10 @@ codons (ENST00000338639.10) with the _H. sapiens_ consensus codon table.
 ![pink1_output_demo](https://github.com/user-attachments/assets/376cdaad-3e61-4eb9-8981-158fd6e707ed)
 
 ![gceh_output_demo](https://github.com/user-attachments/assets/0be508db-962e-44bf-b4ef-ed240ec0d537)
+
+GC<sub>3</sub> content - the level of G/C at the 3rd wobble codon position - is visualized both as a cumulative ratio up until a given position
+(to assess compositional uniformity) as well as dynamically using a sliding window moving average. Below is an example for human TTN.
+
+<img alt="TTN gc3_total" src="https://github.com/user-attachments/assets/13382fd4-445a-484e-bd7e-e5575579b449" />
+
+<img alt="TTN gc3_sliding" src="https://github.com/user-attachments/assets/e40e4c6b-d29f-4df3-ae4f-68cfcaa8fb57" />
