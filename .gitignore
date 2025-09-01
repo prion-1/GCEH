@@ -1,0 +1,13 @@
+# Ignore virtual environment
+.venv/
+
+# Ignore all CSV data files anywhere
+*.csv
+
+# Ignore folders
+resources/
+__pycache__/
+
+# Ignore files
+test.py
+complexity_analysis.py
