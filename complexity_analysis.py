@@ -9,6 +9,18 @@ Even though input is cleaned by the calling GCEH module, 'N' nucleotide handling
 included for future versatility. Defensive programming (like sequence ambiguity handling)
 for breakout use added.
 
+_normalize_sequence(seq): uppercases, converts U→T, and replaces non-ACGT with N.
+_shannon_entropy_from_counts(counts): mono-nucleotide Shannon entropy (bits) over A/C/G/T.
+_gc_balance(counts): GC balance score peaking at 0.5 GC, 0 at extremes.
+_longest_run(seq): length of the longest homopolymer run (A/C/G/T only).
+_kmer_richness(seq, k): distinct k-mer count normalized by min(4^k, valid windows).
+_periodicity_penalty(seq, max_shift): maximum fixed-offset self-similarity; higher means more periodic.
+window_metrics(seq, k, max_n_frac, gcbal_alpha): per-window composite complexity score and components
+(entropy, GC balance, k-mer richness, homopolymer penalty, periodicity penalty, N fraction).
+compute_complexity_track(sequence, window_size, step, k, max_n_frac, gcbal_alpha, return_components, smooth)
+slides across a sequence to produce arrays of window start/end/mid coordinates and complexity scores
+(optionally smoothed) plus component tracks for plotting or downstream analysis.
+
 Primary entry point for notebooks:
 
     from complexity_analysis import compute_complexity_track
