@@ -142,7 +142,7 @@ def _periodicity_penalty(seq: str, max_shift: Optional[int] = None) -> float:
     """
 
     n = len(seq)
-   
+
     if max_shift is None:
         max_shift = max(1, n // 6)
     best = 0.0
@@ -286,14 +286,14 @@ def compute_complexity_track(
     if n < window_size:
         # Nothing to compute; return empty arrays
         empty = np.array([], dtype=int)
-        out: Dict[str, np.ndarray | Dict[str, np.ndarray]] = {
+        out_empty: Dict[str, np.ndarray | Dict[str, np.ndarray]] = {
             "start": empty,
             "end": empty,
             "mid": empty,
             "score": np.array([], dtype=float),
         }
         if return_components:
-            out["components"] = {
+            out_empty["components"] = {
                 "H1_norm": np.array([], dtype=float),
                 "gcbal": np.array([], dtype=float),
                 "kmer_richness": np.array([], dtype=float),
@@ -301,7 +301,7 @@ def compute_complexity_track(
                 "repeat_penalty": np.array([], dtype=float),
                 "n_frac": np.array([], dtype=float),
             }
-        return out
+        return out_empty
 
     starts: List[int] = []
     ends: List[int] = []
@@ -350,14 +350,14 @@ def compute_complexity_track(
         with np.errstate(invalid="ignore"):
             score_arr = sum_conv / cnt_conv
 
-    out2: Dict[str, np.ndarray | Dict[str, np.ndarray]] = {
+    out_computed: Dict[str, np.ndarray | Dict[str, np.ndarray]] = {
         "start": start_arr,
         "end": end_arr,
         "mid": mid_arr,
         "score": score_arr,
     }
     if return_components:
-        out2["components"] = {
+        out_computed["components"] = {
             "H1_norm": np.asarray(H1s, dtype=float),
             "gcbal": np.asarray(gcbals, dtype=float),
             "kmer_richness": np.asarray(kmrs, dtype=float),
@@ -365,4 +365,4 @@ def compute_complexity_track(
             "repeat_penalty": np.asarray(repps, dtype=float),
             "n_frac": np.asarray(nfrs, dtype=float),
         }
-    return out2
+    return out_computed
