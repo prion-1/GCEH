@@ -9,7 +9,7 @@ Even though input is cleaned by the calling GCEH module, 'N' nucleotide handling
 included for future versatility. Defensive programming (like sequence ambiguity handling)
 for breakout use added.
 
-_normalize_sequence(seq): uppercases, converts U→T, and replaces non-ACGT with N.
+_normalize_sequence(seq): uppercases input, converts U→T, and replaces non-ACGT with N.
 _shannon_entropy_from_counts(counts): mono-nucleotide Shannon entropy (bits) over A/C/G/T.
 _gc_balance(counts): GC balance score peaking at 0.5 GC, 0 at extremes.
 _longest_run(seq): length of the longest homopolymer run (A/C/G/T only).
@@ -44,13 +44,13 @@ _BASES = ("A", "C", "G", "T")
 
 def _normalize_sequence(seq: str) -> str:
     """
-    Accepts both DNA and RNA inputs by normalizing U→T, map non-ACGT to 'N'.
+    Uppercases input, converts U→T, maps non-ACGT to 'N'.
     """
 
-    s = seq.replace("U", "T")
+    s = seq.upper().replace("U", "T")
     if set(s) <= set("ACGTN"):
         return s
-    
+
     return "".join(ch if ch in "ACGT" else "N" for ch in s)
 
 
