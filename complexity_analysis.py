@@ -335,17 +335,14 @@ def compute_complexity_track(
     score_arr = np.asarray(scores, dtype=float)
 
     if smooth is not None and smooth > 1 and score_arr.size > 0:
-        # Simple centered moving average; pad with NaN at edges to preserve length
         w = int(smooth)
         if w % 2 == 0:
             w += 1  # enforce odd for centered window
-        pad = w // 2
         kernel = np.ones(w, dtype=float) / w
-        # Convolve while treating NaN as missing: we compute sum and count of non-NaNs
-        x = score_arr.copy()
-        mask = ~np.isnan(x)
-        x_zeroed = np.where(mask, x, 0.0)
-        sum_conv = np.convolve(x_zeroed, kernel, mode="same")
+        # NaN-safe centered moving average over N consecutive window scores: convolve scores
+        # (NaN→0) and a validity mask separately, then divide — skips NaN scores without biasing the mean.
+        mask = ~np.isnan(score_arr)
+        sum_conv = np.convolve(np.where(mask, score_arr, 0.0), kernel, mode="same")
         cnt_conv = np.convolve(mask.astype(float), kernel, mode="same")
         with np.errstate(invalid="ignore"):
             score_arr = sum_conv / cnt_conv
