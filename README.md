@@ -29,6 +29,8 @@ GCEH is a lightweight analysis tool for exploring codon usage, GC/GC3 compositio
 * "Smooth" parameter applies an adjustable sliding window to smooth the resulting curve.
 * The GC-balance α slider lets you control how strongly GC content influences the complexity score (from no GC contribution at zero to GC-weighted behavior).
 
+> **Note:** The complexity score is a custom composite heuristic combining Shannon entropy, k-mer richness, GC balance, homopolymer run length, and periodicity penalty. It is not derived from or validated against any published sequence complexity measure (e.g., Lempel-Ziv, Wootton-Federhen, DUST). It is intended as a descriptive tool for exploring sequence composition, particularly in the context of synthetic construct design where balanced base composition is desirable.
+
 _normalize_sequence(seq): uppercases, converts U→T, and replaces non-ACGT with N.
 _shannon_entropy_from_counts(counts): mono-nucleotide Shannon entropy (bits) over A/C/G/T.
 _gc_balance(counts): GC balance score peaking at 50% GC, 0 at extremes.
